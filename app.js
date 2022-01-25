@@ -149,6 +149,16 @@ app.get('/api/poll/:id', (req, res) => {
     })
 });
 
+app.delete('/api/poll-delete/:id', (req, res) => {
+    let pollId = req.params.id;
+    console.log(pollId)
+    Poll.findByIdAndRemove(pollId, (error, deletedPoll) => {
+        if (!error) {
+            console.log(deletedPoll);
+        }
+    })
+})
+
 //Server
 app.listen(3000, () => {
     console.log('Server is runnin on port 3000')
