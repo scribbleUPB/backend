@@ -160,6 +160,6 @@ app.delete('/api/poll-delete/:id', (req, res) => {
 })
 
 //Server
-app.listen(3000, () => {
-    console.log('Server is runnin on port 3000')
+app.listen(7920, () => {
+    console.log('Server is runnin on port 7920')
 })
