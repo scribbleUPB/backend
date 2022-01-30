@@ -5,8 +5,7 @@ const pollSchema = mongoose.Schema({
     title: String,
     description: String,
     textOptions: [
-        { content: String },
-        { votes: Number },
+        { content: String }
     ],
 
     calendarOptions: [

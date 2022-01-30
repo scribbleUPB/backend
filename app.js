@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const { update } = require('./models/poll')
 const poll = require('./models/poll')
 const app = express()
 const Poll = require('./models/poll')
@@ -137,7 +138,7 @@ app.post("/api/user", (req, res, next) => {
         });
 });
 
-app.get('/api/poll/:id', (req, res) => {
+app.get('/api/poll-view/:id', (req, res) => {
     let pollId = req.params.id
     console.log(pollId);
     Poll.findById(pollId, (err, data) => {
@@ -158,6 +159,22 @@ app.delete('/api/poll-delete/:id', (req, res) => {
         }
     })
 })
+
+app.patch('/api/poll-edit/:id', async (req, res) => {
+    try {
+        const id = req.params.id
+        const updates = req.body
+        const options = { new: true }
+
+        const result = await Poll.findByIdAndUpdate(id, updates, options)
+        res.send(result)
+        console.log('se actualizo con nuevos datos')
+        console.log(id)
+        console.log(updates)
+    } catch (error) {
+        console.log(error.message)
+    }
+});
 
 //Server
 app.listen(7920, () => {
