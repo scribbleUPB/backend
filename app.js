@@ -11,9 +11,9 @@ main().catch((err) => console.log(err))
 
 async function main() {
     //skynet
-    await mongoose.connect('mongodb://scribble:scr1bbl32022@127.0.0.1:27017/scribble').then(() => {
+    //await mongoose.connect('mongodb://scribble:scr1bbl32022@127.0.0.1:27017/scribble').then(() => {
     //local
-    //await mongoose.connect('mongodb://localhost:27017/scribble').then(() => {
+    await mongoose.connect('mongodb://localhost:27017/scribble').then(() => {
         console.log('Database Connected')
     })
 }
@@ -139,6 +139,18 @@ app.post("/api/user", (req, res, next) => {
                 message: "Auth failed"
             });
         });
+});
+
+app.get('/api/poll/:id', (req, res) => {
+    let pollId = req.params.id
+    console.log(pollId);
+    Poll.findById(pollId, (err, data) => {
+        if (err) console.log(err);
+        console.log(data);
+        return res.status(200).json(
+            data
+        )
+    })
 });
 
 app.get('/api/poll-view/:id', (req, res) => {
