@@ -233,6 +233,6 @@ app.patch('/api/poll-edit/:id', async (req, res) => {
 });
 
 //Server
-app.listen(3000, () => {
+app.listen(7920, () => {
   console.log("Server is runnin on port 7920");
 });
