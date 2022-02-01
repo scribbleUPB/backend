@@ -5,6 +5,7 @@ const poll = require('./models/poll')
 const app = express()
 const Poll = require('./models/poll')
 const User = require('./models/user')
+const Answer = require("./models/answer");
 //Mongo
 
 main().catch((err) => console.log(err))
