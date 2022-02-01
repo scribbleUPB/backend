@@ -10,7 +10,10 @@ const User = require('./models/user')
 main().catch((err) => console.log(err))
 
 async function main() {
-    await mongoose.connect('mongodb://localhost:27017/scribble').then(() => {
+    //skynet
+    await mongoose.connect('mongodb://scribble:scr1bbl32022@127.0.0.1:27017/scribble').then(() => {
+    //local
+    //await mongoose.connect('mongodb://localhost:27017/scribble').then(() => {
         console.log('Database Connected')
     })
 }
