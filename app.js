@@ -1,22 +1,24 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const { update } = require('./models/poll')
-const poll = require('./models/poll')
-const app = express()
-const Poll = require('./models/poll')
-const User = require('./models/user')
+const express = require("express");
+const mongoose = require("mongoose");
+const { update } = require("./models/poll");
+const poll = require("./models/poll");
+const app = express();
+const Poll = require("./models/poll");
+const User = require("./models/user");
 const Answer = require("./models/answer");
 //Mongo
 
-main().catch((err) => console.log(err))
+main().catch((err) => console.log(err));
 
 async function main() {
   //skynet
-  await mongoose.connect('mongodb://scribble:scr1bbl32022@127.0.0.1:27017/scribble').then(() => {
-    //local
-    //await mongoose.connect('mongodb://localhost:27017/scribble').then(() => {
-    console.log('Database Connected')
-  })
+  await mongoose
+    .connect("mongodb://scribble:scr1bbl32022@127.0.0.1:27017/scribble")
+    .then(() => {
+      //local
+      //await mongoose.connect('mongodb://localhost:27017/scribble').then(() => {
+      console.log("Database Connected");
+    });
 }
 
 app.use((req, res, next) => {
@@ -195,16 +197,14 @@ app.get("/api/poll/:id", (req, res) => {
   });
 });
 
-app.get('/api/poll-view/:id', (req, res) => {
-  let pollId = req.params.id
+app.get("/api/poll-view/:id", (req, res) => {
+  let pollId = req.params.id;
   console.log(pollId);
   Poll.findById(pollId, (err, data) => {
     if (err) console.log(err);
     console.log(data);
-    return res.status(200).json(
-      data
-    )
-  })
+    return res.status(200).json(data);
+  });
 });
 
 app.delete("/api/poll-delete/:id", (req, res) => {
@@ -217,19 +217,19 @@ app.delete("/api/poll-delete/:id", (req, res) => {
   });
 });
 
-app.patch('/api/poll-edit/:id', async (req, res) => {
+app.patch("/api/poll-edit/:id", async (req, res) => {
   try {
-    const id = req.params.id
-    const updates = req.body
-    const options = { new: true }
+    const id = req.params.id;
+    const updates = req.body;
+    const options = { new: true };
 
-    const result = await Poll.findByIdAndUpdate(id, updates, options)
-    res.send(result)
-    console.log('se actualizo con nuevos datos')
-    console.log(id)
-    console.log(updates)
+    const result = await Poll.findByIdAndUpdate(id, updates, options);
+    res.send(result);
+    console.log("se actualizo con nuevos datos");
+    console.log(id);
+    console.log(updates);
   } catch (error) {
-    console.log(error.message)
+    console.log(error.message);
   }
 });
 
